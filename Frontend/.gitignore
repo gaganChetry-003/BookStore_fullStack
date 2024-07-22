@@ -26,6 +26,4 @@ node_modules
 src/assets
 package.json
 package-lock.json
-vite.config.js
-tailwind.config.js
-postcss.config.js
+

@@ -45,13 +45,13 @@ function Freebook() {
     };
     return (
         <>
-            <div className='max-w-screen-2xl container mx-auto md:px-20 px-4'>
+            <div className='max-w-screen-2xl container mx-auto md:px-20'>
                 <div>  <h1 className='text-xl font-bold mb-4'>Free Offered Courses</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequuntur, fuga fugiat suscipit optio asperiores perspiciatis tempora nobis aut repellendus dicta possimus ex ipsa, vel dolor, excepturi illo temporibus natus.</p></div>
 
 
                 <div>
-                    <Slider {...settings}>
+                    <Slider {...settings} className='p-15'>
                         {filterData.map((item) =>
                             <Cards item={item} key={item.id} />)}
                     </Slider>
