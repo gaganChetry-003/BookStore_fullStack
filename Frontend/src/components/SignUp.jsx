@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Login from './Login'
 import { useForm } from 'react-hook-form'
+import axios from "axios"
 
 function SignUp() {
 
@@ -12,7 +13,25 @@ function SignUp() {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = async(data) => {
+
+        const userInfo = {
+            UserName:data.UserName,
+            Email:data.Email,
+            password:data.password,
+        }
+
+          await axios.post("http://localhost:4001/user/signup",userInfo)
+          .then((res)=>{
+            console.log(res.data)
+            if(res.data){
+                alert("Signup Successfully")
+            }
+          }).catch((err)=>{
+            console.log(err);
+            alert("Error: "+ err);
+          })
+    }
 
     return (
         <>
@@ -36,10 +55,10 @@ function SignUp() {
                                     type="text"
                                     placeholder="Enter your fullname"
                                     className="w-80 px-3 py-1 border rounded-md outline-none"
-                                    {...register("fullname", { required: true })}
+                                    {...register("UserName", { required: true })}
                                 />
                                 <br />
-                                {errors.fullname && (
+                                {errors.UserName && (
                                     <span className="text-sm text-red-500">
                                         This field is required
                                     </span>
@@ -53,10 +72,10 @@ function SignUp() {
                                     type="email"
                                     placeholder="Enter your email"
                                     className="w-80 px-3 py-1 border rounded-md outline-none"
-                                    {...register("email", { required: true })}
+                                    {...register("Email", { required: true })}
                                 />
                                 <br />
-                                {errors.email && (
+                                {errors.Email && (
                                     <span className="text-sm text-red-500">
                                         This field is required
                                     </span>
